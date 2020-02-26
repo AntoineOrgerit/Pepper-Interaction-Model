@@ -1,0 +1,137 @@
+<Models>
+  <Model name="Speech">
+    <InitialState>Introduction</InitialState>
+    <State name="Introduction">
+      <Transitions>
+        <Transition>Content</Transition>
+      </Transitions>
+      <Content>
+        <Function>
+          <FunctionName>speak</FunctionName>
+          <FunctionParameters>
+            <FunctionParameter>C&apos;est parti.</FunctionParameter>
+          </FunctionParameters>
+        </Function>
+        <Function>
+          <FunctionName>send</FunctionName>
+          <FunctionParameters>
+            <FunctionParameter>HAND_GESTURE</FunctionParameter>
+          </FunctionParameters>
+        </Function>
+      </Content>
+    </State>
+    <State name="Content">
+      <Transitions>
+        <Transition>Conclusion</Transition>
+      </Transitions>
+      <Content>
+        <Function>
+          <FunctionName>speak</FunctionName>
+          <FunctionParameters>
+            <FunctionParameter>Je peux bouger mes mains tout en parlant.</FunctionParameter>
+          </FunctionParameters>
+        </Function>
+      </Content>
+    </State>
+    <State name="Conclusion">
+      <Transitions>
+        <Transition>EndState</Transition>
+      </Transitions>
+      <Content>
+        <Function>
+          <FunctionName>speak</FunctionName>
+          <FunctionParameters>
+            <FunctionParameter>Ce n&apos;est pas si compliqué...</FunctionParameter>
+          </FunctionParameters>
+        </Function>
+      </Content>
+    </State>
+  </Model>
+  <Model name="HandGesture">
+    <InitialState>Wait</InitialState>
+    <State name="Wait">
+      <Transitions>
+        <Transition>Action</Transition>
+      </Transitions>
+      <Invariant>
+        <NOT>
+          <Function>
+            <FunctionName>receive</FunctionName>
+            <FunctionParameters>
+              <FunctionParameter>HAND_GESTURE</FunctionParameter>
+            </FunctionParameters>
+          </Function>
+        </NOT>
+      </Invariant>
+    </State>
+    <State name="Action">
+      <Transitions>
+        <Transition>Wait</Transition>
+      </Transitions>
+      <Content>
+        <Function>
+          <FunctionName>open</FunctionName>
+        </Function>
+        <Function>
+          <FunctionName>close</FunctionName>
+        </Function>
+      </Content>
+    </State>
+  </Model>
+  <Model name="WristGesture">
+    <InitialState>Wait</InitialState>
+    <State name="Wait">
+      <Transitions>
+        <Transition>Action</Transition>
+      </Transitions>
+      <Invariant>
+        <NOT>
+          <Function>
+            <FunctionName>receive</FunctionName>
+            <FunctionParameters>
+              <FunctionParameter>HAND_GESTURE</FunctionParameter>
+            </FunctionParameters>
+          </Function>
+        </NOT>
+      </Invariant>
+    </State>
+    <State name="Action">
+      <Transitions>
+        <Transition>Wait</Transition>
+      </Transitions>
+      <Content>
+        <Function>
+          <FunctionName>rotate</FunctionName>
+        </Function>
+      </Content>
+    </State>
+  </Model>
+  <Model name="ElbowGesture">
+    <InitialState>Wait</InitialState>
+    <State name="Wait">
+      <Transitions>
+        <Transition>Action</Transition>
+      </Transitions>
+      <Invariant>
+        <NOT>
+          <Function>
+            <FunctionName>receive</FunctionName>
+            <FunctionParameters>
+              <FunctionParameter>HAND_GESTURE</FunctionParameter>
+            </FunctionParameters>
+          </Function>
+        </NOT>
+      </Invariant>
+    </State>
+    <State name="Action">
+      <Transitions>
+        <Transition>Wait</Transition>
+      </Transitions>
+      <Content>
+        <Function>
+          <FunctionName>rolling</FunctionName>
+        </Function>
+      </Content>
+    </State>
+  </Model>
+</Models>
